@@ -1,35 +1,44 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="orangebrow">
     <ion-title>TOP 10</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let top of novoTop">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Puxe para atualizar"
+        refreshingSpinner="circles"
+        refreshingText="Atualizando...">
+      </ion-refresher-content>
+    </ion-refresher>
+  
+  <ion-card *ngFor="let top of novoTop" color="dark">
 
     <ion-item>
       <ion-avatar item-start>
         <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{top.id}}.png">
       </ion-avatar>
-      <h2><b>{{top.name}}</b> - {{top.symbol}}</h2>
+      <p class="medio"><b>{{top.name}}</b> - {{top.symbol}}</p>
       <p>Rank: {{top.rank}}</p>
     </ion-item>
 
     <hr/>
 
-    <ion-card-content>
+    <ion-card-content> 
       <p>Valor em $: <b>{{top.price_usd}} $</b></p>
       <p>Valor em €: <b>{{top.price_eur}} €</b></p>
       <p>Valor em ฿: <b>{{top.price_btc}} ฿</b></p>
-      <hr/>
     </ion-card-content>
-
+    <hr>
+    <ion-label class="ajustado">Variações</ion-label>
     <ion-row>
       <ion-col>
         <ion-label *ngIf="top.percent_change_1h < 0" style="color: #DB2929;">
           <b>1H: </b>{{top.percent_change_1h}}
         </ion-label>
-        <ion-label *ngIf="top.percent_change_1h >= 0" style="color: #9CCB19;">
+        <ion-label *ngIf="top.percent_change_1h > 0" style="color: #9CCB19;">
           <b>1H: </b>{{top.percent_change_1h}}
         </ion-label>
         <ion-label *ngIf="top.percent_change_1h == 0">

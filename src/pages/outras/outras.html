@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="golden">
     <ion-title>
       + Moedas
     </ion-title>
@@ -7,13 +7,22 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let outras of novoOutras">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Puxe para atualizar"
+        refreshingSpinner="circles"
+        refreshingText="Atualizando...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+  <ion-card *ngFor="let outras of novoOutras" color="dark">
 
     <ion-item>
       <ion-avatar item-start>
         <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{outras.id}}.png">
       </ion-avatar>
-      <h2><b>{{outras.name}}</b> - {{outras.symbol}}</h2>
+      <p class="medio"><b>{{outras.name}}</b> - {{outras.symbol}}</p>
       <p>Rank: {{outras.rank}}</p>
     </ion-item>
 
@@ -23,9 +32,9 @@
       <p>Valor em $: <b>{{outras.price_usd}} $</b></p>
       <p>Valor em €: <b>{{outras.price_eur}} €</b></p>
       <p>Valor em ฿: <b>{{outras.price_btc}} ฿</b></p>
-      <hr/>
     </ion-card-content>
-
+    <hr/>
+    <ion-label class="ajustado">Variações</ion-label>
     <ion-row>
       <ion-col>
         <ion-label *ngIf="outras.percent_change_1h < 0" style="color: #DB2929;">

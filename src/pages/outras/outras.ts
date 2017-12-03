@@ -33,4 +33,19 @@ export class OutrasPage {
   			});
   	}
 
+    doRefresh(refresher){
+      this.moedasProvider.obterRestantes().subscribe(
+        outras => {
+          this.novoOutras = outras;
+      })
+
+      setTimeout(() => {
+        this.moedasProvider.obterRestantes().subscribe(
+          outras => {
+            this.novoOutras = outras;
+            refresher.complete();
+          })
+      }, 2000);
+    }
+
 }

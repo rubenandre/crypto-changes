@@ -35,4 +35,19 @@ export class TopPage {
   			});
   	}
 
+    doRefresh(refresher){
+      this.moedasProvider.obterTop().subscribe(
+        top => {
+          this.novoTop = top;
+      })
+
+      setTimeout(() => {
+        this.moedasProvider.obterTop().subscribe(
+          top => {
+            this.novoTop = top;
+            refresher.complete();
+          })
+      }, 2000);
+    }
+
 }
