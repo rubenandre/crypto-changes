@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>TOP 10</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let top of novoTop">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{top.id}}.png">
+      </ion-avatar>
+      <h2><b>{{top.name}}</b> - {{top.symbol}}</h2>
+      <p>Rank: {{top.rank}}</p>
+    </ion-item>
+
+    <hr/>
+
+    <ion-card-content>
+      <p>Valor em $: <b>{{top.price_usd}} $</b></p>
+      <p>Valor em €: <b>{{top.price_eur}} €</b></p>
+      <p>Valor em ฿: <b>{{top.price_btc}} ฿</b></p>
+      <hr/>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <ion-label *ngIf="top.percent_change_1h < 0" style="color: #DB2929;">
+          <b>1H: </b>{{top.percent_change_1h}}
+        </ion-label>
+        <ion-label *ngIf="top.percent_change_1h >= 0" style="color: #9CCB19;">
+          <b>1H: </b>{{top.percent_change_1h}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label *ngIf="top.percent_change_24h < 0" style="color: #DB2929;">
+          <b>24H: </b>{{top.percent_change_24h}}
+        </ion-label>
+        <ion-label *ngIf="top.percent_change_24h >= 0" style="color: #9CCB19;">
+          <b>24H: </b>{{top.percent_change_24h}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label *ngIf="top.percent_change_7d < 0" style="color: #DB2929;">
+          <b>7d: </b>{{top.percent_change_7d}}
+        </ion-label>
+        <ion-label *ngIf="top.percent_change_7d >= 0" style="color: #9CCB19;">
+          <b>7d: </b>{{top.percent_change_7d}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
