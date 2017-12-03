@@ -6,12 +6,63 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content padding>
+  <ion-card *ngFor="let outras of novoOutras">
+
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-avatar item-start>
+        <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{outras.id}}.png">
+      </ion-avatar>
+      <h2><b>{{outras.name}}</b> - {{outras.symbol}}</h2>
+      <p>Rank: {{outras.rank}}</p>
     </ion-item>
-  </ion-list>
+
+    <hr/>
+
+    <ion-card-content>
+      <p>Valor em $: <b>{{outras.price_usd}} $</b></p>
+      <p>Valor em €: <b>{{outras.price_eur}} €</b></p>
+      <p>Valor em ฿: <b>{{outras.price_btc}} ฿</b></p>
+      <hr/>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <ion-label *ngIf="outras.percent_change_1h < 0" style="color: #DB2929;">
+          <b>1H: </b>{{outras.percent_change_1h}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_1h > 0" style="color: #9CCB19;">
+          <b>1H: </b>{{outras.percent_change_1h}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_1h == 0">
+          <b>1H: </b>{{outras.percent_change_1h}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label *ngIf="outras.percent_change_24h < 0" style="color: #DB2929;">
+          <b>24H: </b>{{outras.percent_change_24h}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_24h >= 0" style="color: #9CCB19;">
+          <b>24H: </b>{{outras.percent_change_24h}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_24h == 0">
+          <b>24H: </b>{{outras.percent_change_24h}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label *ngIf="outras.percent_change_7d < 0" style="color: #DB2929;">
+          <b>7d: </b>{{outras.percent_change_7d}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_7d >= 0" style="color: #9CCB19;">
+          <b>7d: </b>{{outras.percent_change_7d}}
+        </ion-label>
+        <ion-label *ngIf="outras.percent_change_7d == 0">
+          <b>7d: </b>{{outras.percent_change_7d}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>
