@@ -16,7 +16,9 @@
       </ion-refresher-content>
     </ion-refresher>
 
-  <ion-card *ngFor="let outras of novoOutras" color="dark">
+    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+
+  <ion-card *ngFor="let outras of novoOutras | search : terms" color="dark">
 
     <ion-item>
       <ion-avatar item-start>

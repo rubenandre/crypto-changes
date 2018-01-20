@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { SearchPipe } from '../pipes/search/search';
+
 import { SobrePage } from '../pages/sobre/sobre';
 import { OutrasPage } from '../pages/outras/outras';
 import { TopPage } from '../pages/top/top';
@@ -20,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SobrePage,
     OutrasPage,
     TopPage,
-    TabsPage
+    TabsPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
